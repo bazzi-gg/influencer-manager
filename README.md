@@ -17,7 +17,7 @@
 ## Install
 
 ```
-git clone https://github.com/bazzi-gg/influencer.git
+git clone https://github.com/bazzi-gg/influencer-manager.git
 ```
 
 ## Usage
