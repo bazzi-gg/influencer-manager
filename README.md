@@ -23,7 +23,7 @@ git clone https://github.com/bazzi-gg/influencer-manager.git
 ## Usage
 
 1. `InfluencerManager/appsettings.example.json`에서 공백인 **value**값을 채웁니다.
-2. 파일명을 `InfluencerManager/appsettings.example.json`에서 `TrackRecord/InfluencerManager.development.json`으로 변경합니다.
+2. 파일명을 `InfluencerManager/appsettings.example.json`에서 `InfluencerManager/InfluencerManager.development.json`으로 변경합니다.
 3. InfluencerManager.sln을 Rider(Jetbrains) 혹은 Visual Studio로 엽니다.
 
 ## Maintainers
