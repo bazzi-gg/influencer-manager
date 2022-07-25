@@ -10,15 +10,9 @@ using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Sentry;
 using InfluencerManager.HostedServices;
 
-var configuration = new ConfigurationBuilder()
-        .AddEnvironmentVariables("APP_")
-        .AddCommandLine(args)
-        .AddJsonFile("appsettings.json",true,true)
-        .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT")}.json",true,true)
-        .Build();
-CreateHostBuilder(args, configuration["Sentry:Dsn"]).Build().Run();
+CreateHostBuilder(args).Build().Run();
 
-static IHostBuilder CreateHostBuilder(string[] args,string sentryDsn) =>
+static IHostBuilder CreateHostBuilder(string[] args) =>
     Host.CreateDefaultBuilder(args)
         .ConfigureServices((hostContext, services) =>
         {
@@ -39,5 +33,6 @@ static IHostBuilder CreateHostBuilder(string[] args,string sentryDsn) =>
         })
         .ConfigureLogging((hostingContext, logging) =>
         {
-            logging.AddSentry(sentryDsn);
+            logging.AddConfiguration(hostingContext.Configuration);
+            logging.AddSentry();
         });
