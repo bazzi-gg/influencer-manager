@@ -29,7 +29,6 @@ namespace InfluencerManager.HostedServices
                 await using var appDbContext = _appDbContextFactory.CreateDbContext();
                 foreach (var influencer in appDbContext.Influencer.ToList())
                 {
-                    await Task.Delay(3000, stoppingToken);
                     var res = await _kartriderApi.User.GetUserByAccessIdAsync(influencer.AccessId);
                     if (res.Nickname == influencer.Nickname) continue;
                     _logger.LogInformation($"{influencer.Nickname} to {res.Nickname}");
@@ -38,9 +37,6 @@ namespace InfluencerManager.HostedServices
                     appDbContext.Influencer.Update(influencer);
                     await appDbContext.SaveChangesAsync(stoppingToken);
                 }
-#if !DEBUG
-                await Task.Delay(60000, stoppingToken);
-#endif
             }
         }
 
